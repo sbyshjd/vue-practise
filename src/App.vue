@@ -6,6 +6,7 @@
     <router-view></router-view>
     <button @click="homeClick">home click</button>
     <button @click="aboutClick">about click</button>
+    <button @click="userClick">go to user page</button>
   </div>
 </template>
 
@@ -13,16 +14,26 @@
 
 export default {
   name: 'App',
+  data() {
+    return {
+      userId: 'lisi'
+    }
+  },
   methods: {
     homeClick(){
-      // this.$router.push('/home')
+      // this.$router.push('/home').catch(err => {})
       this.$router.replace('/home').catch(err => {})
       console.log('home click')
     },
     aboutClick() {
-      // this.$router.push('/about')
+      // this.$router.push('/about').catch(err => {})
       this.$router.replace('/about').catch(err => {})
       console.log('about click')
+    },
+    userClick() {
+      // this.$router.push('/about').catch(err => {})
+      this.$router.push(`/user/${this.userId}`).catch(err => {})
+      console.log('user click')
     }
   }
 }

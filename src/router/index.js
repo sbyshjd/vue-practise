@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Home from '../components/Home'
-import About from '../components/About'
-import App from '../App'
+// import Home from '../components/Home'
+// import About from '../components/About'
+// import User from '../components/User'
 
 //install the plugin
 Vue.use(VueRouter)
@@ -17,11 +17,30 @@ const routes =[
     },
     {
         path:'/home',
-        component: Home
+        //lazy load for routes
+        component: () => import('../components/Home.vue'),
+        children:[
+            {
+                path:'/',
+                redirect: 'news'
+            },
+            {
+                path:'news',
+                component: () => import('../components/HomeNews.vue')
+            },
+            {
+                path:'message',
+                component: () => import('../components/HomeMessage.vue')
+            }
+        ]
     },
     {
         path:'/about',
-        component: About
+        component: () => import('../components/About.vue')
+    },
+    {
+        path:'/user/:userId',
+        component: () => import('../components/User.vue')
     }
 ]
 

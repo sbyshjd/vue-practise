@@ -1,6 +1,11 @@
 <template>
   <div id='app'>
     <h2>AAAAAA</h2>
+    <p>{{message}}</p>
+    <p>{{count}}</p>
+    <button @click="plusClick">+</button>
+    <button @click="minusClick">-</button>
+    <hello-vuex></hello-vuex>
     <!-- <router-link to='/home'>home papge</router-link>
     <router-link to='/about'>about page</router-link> -->
     <!-- not create everytime -->
@@ -16,15 +21,28 @@
 </template>
 
 <script>
+import HelloVuex from './components/HelloVuex';
+
 
 export default {
   name: 'App',
+  components: {
+    HelloVuex
+  },
   data() {
     return {
-      userId: 'lisi'
+      userId: 'lisi',
+      message: 'This is the message from App.data',
+      count:0
     }
   },
   methods: {
+    plusClick() {
+      this.count ++
+    },
+    minusClick() {
+      this.count --
+    },
     homeClick(){
       // this.$router.push('/home').catch(err => {})
       this.$router.replace('/home').catch(err => {})

@@ -17,6 +17,9 @@ const routes =[
     },
     {
         path:'/home',
+        meta:{
+            title: 'HOME'
+        },
         //lazy load for routes
         component: () => import('../components/Home.vue'),
         children:[
@@ -36,11 +39,24 @@ const routes =[
     },
     {
         path:'/about',
+        meta:{
+            title: 'ABOUT'
+        },
         component: () => import('../components/About.vue')
     },
     {
         path:'/user/:userId',
+        meta:{
+            title: 'USER'
+        },
         component: () => import('../components/User.vue')
+    },
+    {
+        path: '/profile',
+        meta:{
+            title: 'PROFILE'
+        },
+        component: () => import('../components/Profile.vue')
     }
 ]
 
@@ -50,6 +66,14 @@ const router = new VueRouter({
     mode: 'history',
     linkActiveClass: 'active'
 })
+
+//navigation guard
+router.beforeEach((to,from,next) => {
+    // console.log(to);
+    document.title = to.matched[0].meta.title
+    next()
+})
+
 
 export default router
 

@@ -11,10 +11,14 @@ export default {
     name: 'User',
     computed: {
         userId() {
-            console.log(this.$route)
+            // console.log(this.$route)
             return '11111111'
         }
+    },
+    destroyed() {
+        console.log('User is destroyed!!!!')
     }
+    
 }
 </script>
 

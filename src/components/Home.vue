@@ -9,7 +9,23 @@
 
 <script>
 export default {
-    name: 'Home'
+    name: 'Home',
+    created() {
+        console.log('home is created')
+        // console.log(this.$route)
+        // document.title = 'home'
+    },
+    destroyed() {
+        console.log('home is destroyed!')
+    },
+    activated() {
+        console.log('home is active!!!!!')
+    },
+    beforeRouteLeave(to,from,next) {
+        console.log(this.$route.path)
+        next()
+    }
+
 }
 </script>
 
